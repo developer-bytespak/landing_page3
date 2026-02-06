@@ -1,0 +1,413 @@
+@import "tailwindcss";
+
+:root {
+  /* Primary Colors - Dark Theme */
+  --background: #000000;
+  --background-secondary: #0a0f1a;
+  --background-card: #0d1117;
+  --background-elevated: #161b22;
+  
+  /* Accent Colors - Muted Professional Blue */
+  --accent-primary: #3b82f6;
+  --accent-muted: #1d4ed8;
+  --accent-glow: rgba(59, 130, 246, 0.3);
+  
+  /* Text Colors */
+  --text-primary: #f0f6fc;
+  --text-secondary: #8b949e;
+  --text-muted: #6e7681;
+  
+  /* Borders */
+  --border-default: #21262d;
+  --border-muted: #30363d;
+  
+  /* Foreground */
+  --foreground: #f0f6fc;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5em;
+}
+
+p {
+  line-height: 1.7;
+}
+
+/* ============================================
+   GLOBAL LAYOUT SYSTEM
+   ============================================ */
+
+/* Section wrapper - consistent spacing */
+.section {
+  position: relative;
+  width: 100%;
+  padding: 6rem 0;
+  isolation: isolate;
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 4rem 0;
+  }
+}
+
+/* Container - max-width and centering */
+.container-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .container-main {
+    padding: 0 2rem;
+  }
+}
+
+/* Auto-responsive grid */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+    gap: 2.5rem;
+  }
+}
+
+/* Card component */
+.card {
+  background: var(--background-card);
+  border: 1px solid var(--border-default);
+  border-radius: 1rem;
+  padding: 2.5rem;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--accent-muted);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--accent-muted), 0 0 20px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+/* Section backgrounds */
+.section-dark {
+  background: var(--background);
+}
+
+.section-navy {
+  background: var(--background-secondary);
+}
+
+/* Flex utilities */
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Spacing utilities */
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem;
+}
+
+.space-y-8 > * + * {
+  margin-top: 2rem;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-muted);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+/* Utility Classes */
+.text-gradient {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow);
+}
+
+.card-glow {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-default);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.card-glow:hover {
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7), 0 0 0 1px var(--accent-muted), 0 0 20px var(--accent-glow);
+  transform: translateY(-4px);
+}
+
+/* Gradient backgrounds */
+.gradient-radial {
+  background: radial-gradient(ellipse at center, var(--background-secondary) 0%, var(--background) 70%);
+}
+
+.gradient-mesh {
+  background: 
+    radial-gradient(at 40% 20%, rgba(59, 130, 246, 0.1) 0px, transparent 50%),
+    radial-gradient(at 80% 0%, rgba(29, 78, 216, 0.1) 0px, transparent 50%),
+    radial-gradient(at 0% 50%, rgba(59, 130, 246, 0.05) 0px, transparent 50%),
+    var(--background);
+}
+
+/* Section styles */
+.section-dark {
+  background: var(--background);
+}
+
+.section-navy {
+  background: var(--background-secondary);
+}
+/* ===============================
+   GLOBAL LAYOUT SYSTEM (FIX)
+   =============================== */
+
+/* Main content wrapper */
+.container-main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  width: 100%;
+}
+
+/* Section spacing */
+.section {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Smaller sections */
+.section-sm {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+/* Large hero sections */
+.section-hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Grid helpers */
+.grid-auto {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Prevent layout overflow */
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Fix broken flex children */
+.flex-safe {
+  min-width: 0;
+}
+
+/* Consistent cards */
+.card {
+  background: var(--background-card);
+  border: 1px solid var(--border-default);
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+}
+
+/* Section titles */
+.section-title {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+/* Prevent absolute overlap */
+.absolute-fix {
+  position: relative !important;
+}
+/* ===============================
+   GRADIENT CARD STYLES
+   From Uiverse.io by Pravins01
+   =============================== */
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  justify-items: center;
+}
+
+@media (max-width: 768px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .services-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+.gradient-card {
+  position: relative;
+  width: 190px;
+  height: 254px;
+  background-color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  gap: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
+  text-align: center;
+}
+
+.gradient-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -5px;
+  margin: auto;
+  width: 200px;
+  height: 264px;
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #3b82f6 0%, #1e40af 100%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.gradient-card::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #1e3a8a 0%, #3b82f6 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.gradient-card-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+.gradient-card .heading {
+  font-size: 16px;
+  text-transform: capitalize;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.3;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+}
+
+.gradient-card p {
+  font-size: 13px;
+  margin: 0;
+  line-height: 1.5;
+  color: #a8c5e8;
+  text-align: center;
+}
+
+.gradient-card p:last-child {
+  color: #3b82f6;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.gradient-card:hover::after {
+  filter: blur(30px);
+}
+
+.gradient-card:hover::before {
+  transform: rotate(-90deg) scaleX(1.34) scaleY(0.77);
+}
